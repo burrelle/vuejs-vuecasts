@@ -9,6 +9,10 @@
 </head>
 <body>
   <div id="root">
+    <h1>
+      {{ reversedMessage }}
+    </h1>
+
     <ul>
       <li v-for="name in names" v-text="name"></li>
     </ul>
@@ -32,7 +36,14 @@
         title: "JavaScript title.",
         className: 'color-red',
         isLoading: false,
-        isDisabled: false
+        isDisabled: false,
+        message: 'Hello World'
+      },
+
+      computed: {
+        reversedMessage() {
+          return this.message.split('').reverse.join('');
+        }
       },
 
       methods: {
