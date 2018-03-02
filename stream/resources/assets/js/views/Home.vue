@@ -15,6 +15,7 @@
 
                     <div class="message-body" v-text="status.body"></div>
                 </div>
+                <add-to-stream @completed="addStatus"></add-to-stream>
             </div>
         </div>
     </div>
@@ -22,7 +23,9 @@
 
 <script>
     import moment from 'moment';
+    import AddToStream from '../components/AddToStream.vue'
     export default {
+        components: { AddToStream },
         data() {
             return {
                 statuses : []
@@ -37,6 +40,11 @@
         methods : {
             postedOn(status){
                 return moment(status.created_at).fromNow();
+            },
+            addStatus(status){
+                this.statuses.unshift(status);
+                alert('Your status has been added to the stream');
+                window.scrollTo(0,0);
             }
         }
     }
